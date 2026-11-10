@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Novo veículo | Oficina Fácil{% endblock %}
+{% block content %}<section class="panel narrow"><a class="back" href="{{ url_for('veiculos') }}">← Voltar</a><h1>Novo veículo</h1>
+{% if clientes %}<form method="post" class="form">
+<label>Proprietário<select name="id_cliente" required>{% for c in clientes %}<option value="{{ c.id_cliente }}">{{ c.nome }}</option>{% endfor %}</select></label>
+<label>Marca<input name="marca" required></label><label>Modelo<input name="modelo" required></label>
+<label>Placa<input name="placa" required maxlength="8" placeholder="ABC1D23"></label><label>Ano<input name="ano" type="number" min="1900" max="2100"></label>
+<button class="button">Salvar veículo</button></form>{% else %}<p>Cadastre um cliente antes de cadastrar um veículo.</p><a class="button" href="{{ url_for('novo_cliente') }}">Cadastrar cliente</a>{% endif %}
+</section>{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Ordem #{{ ordem.id_os }} | Oficina Fácil{% endblock %}
+{% block content %}<section class="panel"><a class="back" href="{{ url_for('ordens') }}">← Voltar às ordens</a><span class="eyebrow">DETALHES DO ATENDIMENTO</span><h1>Ordem #{{ ordem.id_os }}</h1>
+<div class="cards detail-cards"><div class="metric"><span>Cliente</span><strong class="small-value">{{ ordem.cliente_nome }}</strong></div><div class="metric"><span>Veículo</span><strong class="small-value">{{ ordem.marca }} {{ ordem.modelo }}</strong></div><div class="metric"><span>Placa</span><strong class="small-value">{{ ordem.placa }}</strong></div><div class="metric"><span>Status</span><strong class="small-value">{{ ordem.status }}</strong></div></div>
+<h2>Serviços incluídos</h2><div class="table-wrap"><table><thead><tr><th>Serviço</th><th>Quantidade</th><th>Valor unitário</th><th>Subtotal</th></tr></thead><tbody>{% for item in itens %}<tr><td>{{ item.nome }}</td><td>{{ item.quantidade }}</td><td>R$ {{ "%.2f"|format(item.valor_unitario) }}</td><td>R$ {{ "%.2f"|format(item.subtotal) }}</td></tr>{% endfor %}</tbody></table></div>
+<h2 class="total">Total: R$ {{ "%.2f"|format(ordem.valor_total) }}</h2></section>{% endblock %}

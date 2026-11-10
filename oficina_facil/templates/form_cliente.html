@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar' if cliente else 'Novo' }} cliente | Oficina Fácil{% endblock %}
+{% block content %}<section class="panel narrow"><a class="back" href="{{ url_for('clientes') }}">← Voltar</a><h1>{{ 'Editar cliente' if cliente else 'Novo cliente' }}</h1>
+<form method="post" class="form">
+<label>Nome completo<input name="nome" required value="{{ cliente.nome if cliente else '' }}"></label>
+<label>Telefone<input name="telefone" value="{{ cliente.telefone if cliente else '' }}" placeholder="(11) 99999-9999"></label>
+<label>E-mail<input type="email" name="email" value="{{ cliente.email if cliente else '' }}"></label>
+<button class="button" type="submit">Salvar cliente</button></form></section>{% endblock %}
