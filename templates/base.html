@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}TaskFlow{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="top">
+        <a href="{{ url_for('index') }}" class="brand">TaskFlow</a>
+        <span class="legend">
+            <span class="tag sql">SQL</span> dados estruturados
+            <span class="tag mongo">Mongo</span> documentos
+        </span>
+    </header>
+    <main>
+        {% with msgs = get_flashed_messages(with_categories=true) %}
+            {% for cat, m in msgs %}
+                <div class="flash {{ cat }}">{{ m }}</div>
+            {% endfor %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
